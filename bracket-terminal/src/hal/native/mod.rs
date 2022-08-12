@@ -26,7 +26,7 @@ lazy_static! {
 }
 
 lazy_static! {
-    pub(crate) static ref CONSOLE_BACKING: Mutex<Vec<ConsoleBacking>> = Mutex::new(Vec::new());
+    pub static ref CONSOLE_BACKING: Mutex<Vec<ConsoleBacking>> = Mutex::new(Vec::new());
 }
 
 pub struct PlatformGL {

@@ -9,7 +9,7 @@ pub(crate) use sprite_console_backing::*;
 mod shared_main_loop;
 pub(crate) use shared_main_loop::*;
 
-pub(crate) enum ConsoleBacking {
+pub enum ConsoleBacking {
     Simple { backing: SimpleConsoleBackend },
     Sparse { backing: SparseConsoleBackend },
     Fancy { backing: FancyConsoleBackend },

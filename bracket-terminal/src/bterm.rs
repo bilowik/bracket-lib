@@ -12,6 +12,7 @@ use bracket_color::prelude::RGBA;
 use bracket_geometry::prelude::{Point, PointF, Rect};
 use parking_lot::Mutex;
 use std::convert::*;
+use crate::hal::CONSOLE_BACKING;
 
 /// A display console, used internally to provide console render support.
 /// Public in case you want to play with it, or access it directly.
@@ -1081,6 +1082,25 @@ impl BTerm {
                 index,
             });
         }
+    }
+
+    pub fn unregister_console(&mut self, idx: usize) {
+        BACKEND_INTERNAL.lock().consoles.remove(idx);
+        CONSOLE_BACKING.lock().remove(idx);
+    }
+
+    pub fn unregister_all_consoles(&mut self) {
+        BACKEND_INTERNAL.lock().consoles.clear();
+        CONSOLE_BACKING.lock().clear();
+    }
+
+    pub fn clear(&mut self) {
+        self.unregister_all_consoles();
+        let mut bi = BACKEND_INTERNAL.lock();
+        bi.fonts.clear();
+        bi.sprite_sheets.clear();
+
+
     }
 }
 
